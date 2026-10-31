@@ -15,30 +15,38 @@ import {
 import { syncWithSupabase } from './utils/guestList';
 
 const DEFAULT_WEDDING: WeddingDetails = {
-  brideName: 'Emma',
-  groomName: 'Andre',
-  coupleInitials: 'EA',
+  brideName: 'Kath',
+  groomName: 'Raynold',
+  coupleInitials: 'RK',
   tagline: 'Formal invitation to follow',
   introHeading: 'A LOVE LETTER FROM',
-  weddingDate: '2027-07-17',
-  dateFormatted: 'Saturday, 17 July 2027',
-  monthYear: 'JULY 2027',
-  dayNumber: 17,
-  locationCity: 'New York City',
-  venueName: 'The Plaza & Central Park Conservatory',
-  venueAddress: '768 5th Ave, New York, NY 10019',
-  rsvpDeadline: 'January 2027',
-  contactEmail: 'wedding@emmaandre.com',
+  weddingDate: '2027-04-23',
+  dateFormatted: 'Friday, 23 April 2027',
+  monthYear: 'APRIL 2027',
+  dayNumber: 23,
+  locationCity: 'Taytay, Rizal',
+  venueName: 'Holy Spirit Church',
+  venueAddress: 'Cabrera Rd, Taytay, 1920 Rizal',
+  rsvpDeadline: 'March 2027',
+  contactEmail: 'wedding@raynoldandkath.com',
   primaryColor: '#480e19',
   envelopeBg: '#380913',
-  couplePhotoUrl: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80',
+  couplePhotoUrl: '/assets/aistudio/image_8dd1048b.png',
 };
 
 export default function App() {
   const [wedding, setWedding] = useState<WeddingDetails>(() => {
     try {
       const saved = localStorage.getItem('wedding_invitation_config');
-      return saved ? JSON.parse(saved) : DEFAULT_WEDDING;
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (parsed.brideName === 'Emma' || parsed.groomName === 'Andre' || !parsed.couplePhotoUrl || parsed.couplePhotoUrl.includes('unsplash')) {
+          localStorage.setItem('wedding_invitation_config', JSON.stringify(DEFAULT_WEDDING));
+          return DEFAULT_WEDDING;
+        }
+        return parsed;
+      }
+      return DEFAULT_WEDDING;
     } catch {
       return DEFAULT_WEDDING;
     }

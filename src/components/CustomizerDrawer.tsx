@@ -188,6 +188,20 @@ export const CustomizerDrawer: React.FC<CustomizerDrawerProps> = ({
                 className="w-full bg-[#1e0409] border border-[#6b1f2e] rounded px-3 py-1.5 text-xs text-white outline-none"
               />
             </div>
+
+            {/* Couple Photo URL */}
+            <div>
+              <label className="block text-[11px] font-cinzel tracking-wider text-[#eccdc0] uppercase mb-1">
+                Couple Photo URL / Path
+              </label>
+              <input
+                type="text"
+                value={wedding.couplePhotoUrl || ''}
+                onChange={(e) => onChange({ ...wedding, couplePhotoUrl: e.target.value })}
+                placeholder="/assets/aistudio/image_8dd1048b.png"
+                className="w-full bg-[#1e0409] border border-[#6b1f2e] rounded px-3 py-1.5 text-xs text-white outline-none"
+              />
+            </div>
           </div>
         </div>
 

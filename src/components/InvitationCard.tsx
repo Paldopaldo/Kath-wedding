@@ -27,7 +27,7 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
   const [wishesList, setWishesList] = useState<Array<{ name: string; message: string; date: string }>>([
     {
       name: 'Charlotte & James',
-      message: 'So utterly delighted for you two! Counting down the days until we celebrate in NYC! ❤️',
+      message: 'So utterly delighted for you two! Counting down the days until we celebrate with you in Taytay, Rizal! ❤️',
       date: 'Yesterday'
     },
     {
@@ -221,7 +221,7 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
                 <span className="font-sans font-semibold text-xs sm:text-sm text-[#7e2537] w-20 shrink-0 pt-0.5">4:00 PM</span>
                 <div>
                   <p className="font-semibold text-base text-[#3a0d16]">The Wedding Ceremony</p>
-                  <p className="text-xs sm:text-sm text-[#735142]">Grand Ballroom &middot; Exchange of vows &amp; unity celebration</p>
+                  <p className="text-xs sm:text-sm text-[#735142]">{wedding.venueName} &middot; Exchange of holy matrimony vows</p>
                 </div>
               </div>
               <div className="flex items-start gap-4 border-b border-[#e8ded3] pb-3">
@@ -248,7 +248,7 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
                 Leave a Love Note
               </span>
               <p className="font-serif italic text-xs sm:text-sm text-[#7b5747] mt-1">
-                Send warm wishes to {wedding.brideName} &amp; {wedding.groomName}
+                Send warm wishes to {wedding.groomName} &amp; {wedding.brideName}
               </p>
             </div>
 
@@ -330,10 +330,10 @@ export const InvitationCard: React.FC<InvitationCardProps> = ({
           {/* Bottom Elegant Note */}
           <div className="text-center pt-2 pb-4">
             <p className="font-script text-2xl text-[#63202e]">
-              {wedding.brideName} &amp; {wedding.groomName}
+              {wedding.groomName} &amp; {wedding.brideName}
             </p>
             <p className="font-cinzel text-[9px] tracking-[0.25em] text-[#9c7d71] uppercase mt-1">
-              Forever &middot; July 17, 2027
+              Forever &middot; {wedding.dateFormatted}
             </p>
           </div>
         </div>

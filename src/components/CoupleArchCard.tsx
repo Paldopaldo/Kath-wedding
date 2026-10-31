@@ -12,12 +12,10 @@ export const CoupleArchCard: React.FC<CoupleArchCardProps> = ({ wedding }) => {
         
         {/* Left Side: Couple Photograph with Graceful Swan (matching reference image) */}
         <div className="relative w-full sm:w-[52%] min-h-[280px] sm:min-h-[340px] md:min-h-[380px] overflow-hidden bg-[#ded3c5]">
-          {/* Couple photo - Bride in white veil & gown, groom in tuxedo */}
           <img
-            src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80"
-            alt={`${wedding.brideName} and ${wedding.groomName}`}
-            className="w-full h-full object-cover filter contrast-[1.02] grayscale-[20%] sepia-[15%]"
-            referrerPolicy="no-referrer"
+            src={wedding.couplePhotoUrl || '/assets/aistudio/image_8dd1048b.png'}
+            alt={`${wedding.groomName} and ${wedding.brideName}`}
+            className="w-full h-full object-cover object-[center_20%] filter contrast-[1.03] brightness-[1.01]"
           />
 
           {/* Soft gradient edge between photo and paper */}
@@ -115,10 +113,10 @@ export const CoupleArchCard: React.FC<CoupleArchCardProps> = ({ wedding }) => {
             </span>
           </div>
 
-          {/* Couple Names */}
+          {/* Couple Names: Raynold & Kath */}
           <div className="my-4 sm:my-6">
             <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#46111b] tracking-[0.2em] uppercase font-light">
-              {wedding.brideName}
+              {wedding.groomName}
             </h3>
             <div className="relative flex items-center justify-center -my-3 sm:-my-4">
               <span className="font-script text-4xl sm:text-5xl md:text-6xl text-[#9c5a66] transform -rotate-6">
@@ -126,11 +124,11 @@ export const CoupleArchCard: React.FC<CoupleArchCardProps> = ({ wedding }) => {
               </span>
             </div>
             <h4 className="font-serif text-3xl sm:text-4xl md:text-5xl text-[#46111b] tracking-[0.2em] uppercase font-light">
-              {wedding.groomName}
+              {wedding.brideName}
             </h4>
           </div>
 
-          {/* Fan/Seashell fluting & Date: 07 · 17 · 2027 (matching image_3e4f3f3c.png) */}
+          {/* Fan/Seashell fluting & Date: 04 · 23 · 2027 */}
           <div className="pb-3 sm:pb-5">
             {/* Two Symmetrical Shell / Fan fluted rosettes flanking the date */}
             <div className="flex items-center justify-center gap-2 sm:gap-3 mb-1 opacity-90">
@@ -144,7 +142,15 @@ export const CoupleArchCard: React.FC<CoupleArchCardProps> = ({ wedding }) => {
               </svg>
 
               <span className="font-sans text-xs sm:text-sm tracking-[0.28em] text-[#7d5341] font-semibold uppercase">
-                07 &middot; 17 &middot; 2027
+                {wedding.weddingDate ? (
+                  (() => {
+                    const parts = wedding.weddingDate.split('-');
+                    if (parts.length === 3) {
+                      return `${parts[1]} · ${parts[2]} · ${parts[0]}`;
+                    }
+                    return '04 · 23 · 2027';
+                  })()
+                ) : '04 · 23 · 2027'}
               </span>
 
               {/* Right Fan Shell */}

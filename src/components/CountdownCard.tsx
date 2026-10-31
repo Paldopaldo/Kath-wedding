@@ -6,17 +6,17 @@ interface CountdownCardProps {
 }
 
 export const CountdownCard: React.FC<CountdownCardProps> = ({ wedding }) => {
-  // Wedding target: July 17, 2027 16:00:00 (EDT)
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
     hours: number;
     minutes: number;
     seconds: number;
-  }>({ days: 881, hours: 16, minutes: 1, seconds: 20 });
+  }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    // If target date is July 17, 2027:
-    const target = new Date('2027-07-17T16:00:00');
+    // Dynamic target based on weddingDate: April 23, 2027 16:00:00
+    const dateStr = (wedding.weddingDate || '2027-04-23') + 'T16:00:00';
+    const target = new Date(dateStr);
 
     const updateTimer = () => {
       const now = new Date();

@@ -41,7 +41,6 @@ import {
   Edit2,
   FileText,
   Lock,
-  Unlock,
   ChevronDown,
   ChevronUp,
 } from 'lucide-react';
@@ -51,7 +50,7 @@ interface RSVPAdminModalProps {
   onClose: () => void;
 }
 
-const DEFAULT_ADMIN_PIN = '1108';
+const DEFAULT_ADMIN_PIN = '0531';
 
 export const RSVPAdminModal: React.FC<RSVPAdminModalProps> = ({ isOpen, onClose }) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(() => {
@@ -145,20 +144,14 @@ export const RSVPAdminModal: React.FC<RSVPAdminModalProps> = ({ isOpen, onClose 
 
   const handlePinSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (pinInput.trim() === DEFAULT_ADMIN_PIN || pinInput.trim().toLowerCase() === 'admin') {
+    if (pinInput.trim() === DEFAULT_ADMIN_PIN) {
       setIsAuthenticated(true);
       sessionStorage.setItem('wedding_admin_authed', 'true');
       setPinError('');
       setPinInput('');
     } else {
-      setPinError(`Incorrect PIN. (Hint: default is ${DEFAULT_ADMIN_PIN})`);
+      setPinError('Incorrect PIN. Please try again.');
     }
-  };
-
-  const handleQuickUnlock = () => {
-    setIsAuthenticated(true);
-    sessionStorage.setItem('wedding_admin_authed', 'true');
-    setPinError('');
   };
 
   const handleLockAdmin = () => {
@@ -579,7 +572,7 @@ export const RSVPAdminModal: React.FC<RSVPAdminModalProps> = ({ isOpen, onClose 
                   type="password"
                   value={pinInput}
                   onChange={(e) => setPinInput(e.target.value)}
-                  placeholder="Enter PIN (Default: 1108)"
+                  placeholder="Enter 4-digit PIN"
                   autoFocus
                   className="w-full bg-[#1b0307] text-white text-center font-mono text-base tracking-widest px-4 py-2.5 rounded-xl border border-[#6b1f2e] focus:border-[#caa48a] outline-none"
                 />
@@ -598,20 +591,6 @@ export const RSVPAdminModal: React.FC<RSVPAdminModalProps> = ({ isOpen, onClose 
                 Unlock Guest List Admin
               </button>
             </form>
-
-            <div className="pt-2 border-t border-[#460d19] w-full text-center">
-              <button
-                type="button"
-                onClick={handleQuickUnlock}
-                className="text-xs text-[#deb6ab] hover:text-white underline cursor-pointer flex items-center justify-center gap-1.5 mx-auto"
-              >
-                <Unlock className="w-3.5 h-3.5" />
-                <span>Quick Unlock (Organizer Mode)</span>
-              </button>
-              <span className="text-[10px] text-[#865961] block mt-1">
-                Default PIN is <strong>1108</strong>
-              </span>
-            </div>
           </div>
         ) : (
           /* UNLOCKED ADMIN INTERFACE */

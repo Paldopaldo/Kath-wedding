@@ -72,10 +72,10 @@ export const Envelope: React.FC<EnvelopeProps> = ({
                 {wedding.introHeading || 'A Love Letter From'}
               </p>
 
-              {/* Couple's Names: EMMA & ANDRE */}
+              {/* Couple's Names: RAYNOLD & KATH */}
               <div className="mt-5 mb-8">
                 <h1 className="font-serif text-3xl sm:text-4xl text-[#fbede4] tracking-[0.25em] uppercase font-light">
-                  {wedding.brideName}
+                  {wedding.groomName}
                 </h1>
                 
                 {/* Romantic cursive '&' or monogram loop */}
@@ -86,7 +86,7 @@ export const Envelope: React.FC<EnvelopeProps> = ({
                 </div>
 
                 <h2 className="font-serif text-3xl sm:text-4xl text-[#fbede4] tracking-[0.25em] uppercase font-light">
-                  {wedding.groomName}
+                  {wedding.brideName}
                 </h2>
               </div>
             </div>
